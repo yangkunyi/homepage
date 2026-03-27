@@ -13,11 +13,11 @@ const links = [
 ---
 
 <header class="mb-12 sm:mb-16">
-  <div class="rounded-[2rem] border border-black bg-accent px-4 py-3 sm:rounded-full sm:px-2 sm:py-2" style="box-shadow: 10px 10px 0 #666666;">
+  <div class="rounded-[2rem] border border-black bg-black px-4 py-3 sm:rounded-full sm:px-2 sm:py-2" style="box-shadow: 10px 10px 0 #1a8a47;">
     <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
       <a
         href="/"
-        class="rounded-full px-3 py-1 text-xl font-medium tracking-tight whitespace-nowrap text-black hover:text-white sm:px-4 sm:py-2 sm:text-sm"
+        class="rounded-full bg-accent px-3 py-1 text-xl font-medium tracking-tight whitespace-nowrap text-white hover:bg-white hover:text-black sm:px-4 sm:py-2 sm:text-sm"
       >
         Yang Kunyi
       </a>
@@ -36,8 +36,8 @@ const links = [
                 class:list={[
                   "rounded-full px-3 py-2.5 text-center font-mono text-[0.78rem] uppercase tracking-[0.18em] sm:px-4 sm:py-2 sm:text-[0.7rem]",
                   active
-                    ? "bg-black text-white"
-                    : "text-black hover:bg-white hover:text-black",
+                    ? "bg-accent text-white"
+                    : "text-white hover:bg-white hover:text-black",
                 ]}
               >
                 {link.label}

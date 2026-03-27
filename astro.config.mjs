@@ -5,6 +5,8 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://kunyi.github.io",
+  base: "/",
   devToolbar: {
     enabled: false,
   },

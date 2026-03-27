@@ -1,10 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --paper: #000000;
+  --paper: #ffffff;
   --ink: #000000;
-  --muted: #666666;
-  --line: #d9d9d9;
+  --muted: #404040;
+  --line: #bfbfbf;
+  --soft: #f2f2f2;
   --accent: #1a8a47;
 }
 
@@ -13,6 +14,7 @@
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-line: var(--line);
+  --color-soft: var(--soft);
   --color-accent: var(--accent);
   --font-sans: "Space Grotesk", "Helvetica Neue", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
@@ -53,7 +55,7 @@
 
   .panel {
     @apply rounded-[1.5rem] border border-black bg-white text-black;
-    box-shadow: 10px 10px 0 #1a8a47;
+    box-shadow: 10px 10px 0 #000000;
   }
 
   .panel-accent {
@@ -71,18 +73,24 @@
 
   .chip {
     @apply inline-flex items-center rounded-full px-3 py-1 font-mono text-[0.68rem] uppercase tracking-[0.16em];
-    border: 1px solid #666666;
-    color: #666666;
+    border: 1px solid #000000;
+    background: #ffffff;
+    color: #000000;
   }
 
   .panel-dark {
-    @apply rounded-[1.75rem] border border-white bg-black text-white;
+    @apply rounded-[1.75rem] border border-black bg-black text-white;
     box-shadow: 10px 10px 0 #1a8a47;
   }
 
   .panel-green {
-    @apply rounded-[1.75rem] border border-black bg-accent text-black;
-    box-shadow: 10px 10px 0 #666666;
+    @apply rounded-[1.75rem] border border-black bg-accent text-white;
+    box-shadow: 10px 10px 0 #000000;
+  }
+
+  .panel-soft {
+    @apply rounded-[1.75rem] border border-black bg-soft text-black;
+    box-shadow: 10px 10px 0 #1a8a47;
   }
 
   .rich-text {

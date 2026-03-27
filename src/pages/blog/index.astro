@@ -9,14 +9,16 @@ const posts = (await getCollection("blog")).sort(
 ---
 
 <BaseLayout title="Blog | Yang Kunyi" description="Writing on design, product thinking, and quieter digital spaces.">
-  <section class="mb-12 grid gap-8 border-b border-line pb-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(280px,0.7fr)]">
-    <div>
-      <p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-white">Writing</p>
+  <section class="mb-12 grid gap-8 border-b border-black pb-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(280px,0.95fr)]">
+    <div class="panel p-7 sm:p-10">
+      <p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-accent">Writing</p>
       <h1 class="mt-4 text-5xl font-medium tracking-tight sm:text-6xl">Blog</h1>
     </div>
-    <p class="max-w-xl text-lg leading-8 text-white">
-      Essays and working notes on the shape of interfaces, the pace of software, and the systems that make digital work feel more legible.
-    </p>
+    <div class="panel-dark p-7 sm:p-8">
+      <p class="max-w-xl text-lg leading-8 text-white">
+        Essays and working notes on the shape of interfaces, the pace of software, and the systems that make digital work feel more legible.
+      </p>
+    </div>
   </section>
 
   <div class="grid gap-5">
@@ -24,19 +26,28 @@ const posts = (await getCollection("blog")).sort(
       posts.map((post, index) => (
         <a
           href={`/blog/${post.id}/`}
-          class="panel block p-6 hover:-translate-y-0.5 hover:border-accent"
+          class:list={[
+            "block p-6 hover:-translate-y-0.5 hover:border-accent",
+            index === 0 ? "panel-dark" : "panel-soft",
+          ]}
           data-reveal
           style={`--delay: ${120 + index * 90}ms;`}
         >
           <div class="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
             <div class="max-w-3xl">
               <h2 class="text-3xl font-medium tracking-tight">{post.data.title}</h2>
-              <p class="mt-4 leading-7 text-muted">{post.data.description}</p>
+              <p class:list={[
+                "mt-4 leading-7",
+                index === 0 ? "text-white" : "text-muted",
+              ]}>{post.data.description}</p>
               <div class="mt-5 flex flex-wrap gap-2">
                 {post.data.tags.map((tag) => <span class="chip">{tag}</span>)}
               </div>
             </div>
-            <p class="kicker whitespace-nowrap">{formatDate(post.data.publishedAt)}</p>
+            <p class:list={[
+              "whitespace-nowrap font-mono text-[0.68rem] uppercase tracking-[0.28em]",
+              index === 0 ? "text-white" : "text-muted",
+            ]}>{formatDate(post.data.publishedAt)}</p>
           </div>
         </a>
       ))

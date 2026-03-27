@@ -28,14 +28,14 @@ const currentPath = Astro.url.pathname;
     />
     <title>{title}</title>
   </head>
-  <body class="bg-paper text-white antialiased">
-    <div class="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-6 pb-10 pt-4 sm:px-8 lg:px-12">
+  <body class="bg-paper text-black antialiased">
+    <div class="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-6 pb-10 pt-4 sm:px-8 lg:px-12">
       <SiteHeader currentPath={currentPath} />
       <main class="flex-1"><slot /></main>
-      <footer class="mt-16 border-t border-white py-6 text-sm text-white">
+      <footer class="mt-16 border-t border-black py-6 text-sm text-black">
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p>Quietly built with Astro, TypeScript, Tailwind CSS, and MDX.</p>
-          <p class="font-mono text-[0.68rem] uppercase tracking-[0.18em]">Black / White / Grey / #1A8A47</p>
+          <p class="font-mono text-[0.68rem] uppercase tracking-[0.18em] text-muted">Black / White / Grey / #1A8A47</p>
         </div>
       </footer>
     </div>

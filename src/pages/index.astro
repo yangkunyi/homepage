@@ -19,22 +19,25 @@ const featuredAlbums = albumEntries.slice(0, 3);
   title="Yang Kunyi | Homepage"
   description="A restrained personal homepage with writing and albums."
 >
-  <section class="grid gap-6 border-b border-line pb-14 pt-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)] lg:items-stretch">
-    <div class="panel-green flex min-h-[420px] flex-col justify-between p-7 sm:p-10 lg:min-h-[520px] lg:p-12" data-reveal style="--delay: 100ms;">
+  <section class="grid gap-6 border-b border-black pb-14 pt-4 lg:grid-cols-[minmax(0,1.12fr)_360px] lg:items-stretch">
+    <div class="panel flex min-h-[460px] flex-col justify-between p-7 sm:p-10 lg:min-h-[560px] lg:p-12" data-reveal style="--delay: 100ms;">
       <div class="space-y-6">
-        <p class="font-mono text-[0.72rem] uppercase tracking-[0.3em] text-black">Personal Homepage</p>
-        <h1 class="max-w-4xl text-[clamp(3rem,7vw,6rem)] leading-[0.9] font-medium tracking-[-0.05em] text-balance">
-          Yang Kunyi builds <span class="text-white">quiet interfaces</span>, writes clear notes, and keeps a small shelf of records close at hand.
+        <p class="font-mono text-[0.72rem] uppercase tracking-[0.3em] text-accent">Personal Homepage</p>
+        <h1 class="max-w-4xl text-[clamp(3rem,7vw,6.2rem)] leading-[0.9] font-medium tracking-[-0.05em] text-balance">
+          Yang Kunyi builds <span class="text-accent">hard-edged minimal pages</span>, writes precise notes, and keeps an album archive close at hand.
         </h1>
+        <p class="max-w-2xl text-lg leading-8 text-muted">
+          The site stays spare, but not quiet in tone. White space carries the layout. Black sets the frame. Green takes the lead.
+        </p>
       </div>
 
       <div class="space-y-6">
         <div class="h-px w-full bg-black"></div>
         <div class="flex flex-wrap gap-3">
-          <span class="rounded-full border border-black px-3 py-1 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-black">Minimalism</span>
-          <span class="rounded-full border border-black px-3 py-1 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-black">Writing</span>
-          <span class="rounded-full border border-black px-3 py-1 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-black">Albums</span>
-          <span class="rounded-full border border-white bg-black px-3 py-1 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-white">#1A8A47</span>
+          <span class="chip">Minimalism</span>
+          <span class="chip">Writing</span>
+          <span class="chip">Albums</span>
+          <span class="rounded-full border border-black bg-accent px-3 py-1 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-white">#1A8A47</span>
         </div>
       </div>
     </div>
@@ -43,30 +46,29 @@ const featuredAlbums = albumEntries.slice(0, 3);
       <div class="panel-dark p-7 sm:p-8">
         <p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-white">Position</p>
         <p class="mt-4 text-xl leading-8 text-white">
-          This space is intentionally small: a front page, a set of essays, and an album archive. The rhythm stays spare,
-          but the contrast carries more heat.
+          A compact personal front page with blog and album archives, built to feel exact on desktop instead of washed out or decorative.
         </p>
       </div>
 
-      <div class="panel p-7 sm:p-8">
-        <p class="kicker">Current Focus</p>
-        <p class="mt-4 text-3xl font-medium leading-tight tracking-tight">
-          Designing slower pages, keeping sharper notes, and listening with more patience.
+      <div class="panel-green p-7 sm:p-8">
+        <p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-white">Current Focus</p>
+        <p class="mt-4 text-3xl font-medium leading-tight tracking-tight text-white">
+          Clear composition, firmer contrast, and a rhythm that feels deliberate at full width.
         </p>
       </div>
 
-      <div class="grid gap-4 sm:grid-cols-3">
-        <div class="rounded-[1.5rem] border border-black bg-black px-5 py-5 text-white">
-          <p class="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-white">Mode</p>
-          <p class="mt-3 text-xl font-medium">Quiet</p>
+      <div class="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+        <div class="panel-soft px-5 py-5">
+          <p class="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-muted">Mode</p>
+          <p class="mt-3 text-xl font-medium">Reduced</p>
         </div>
-        <div class="rounded-[1.5rem] border border-black bg-accent px-5 py-5 text-black" style="box-shadow: 10px 10px 0 #666666;">
-          <p class="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-black">Tone</p>
-          <p class="mt-3 text-xl font-medium">Clear</p>
+        <div class="rounded-[1.5rem] border border-black bg-black px-5 py-5 text-white" style="box-shadow: 10px 10px 0 #1a8a47;">
+          <p class="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-white">Tone</p>
+          <p class="mt-3 text-xl font-medium">Direct</p>
         </div>
-        <div class="rounded-[1.5rem] border border-black bg-white px-5 py-5 text-black" style="box-shadow: 10px 10px 0 #1a8a47;">
-          <p class="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-muted">Archive</p>
-          <p class="mt-3 text-xl font-medium">Alive</p>
+        <div class="rounded-[1.5rem] border border-black bg-accent px-5 py-5 text-white" style="box-shadow: 10px 10px 0 #000000;">
+          <p class="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-white">Archive</p>
+          <p class="mt-3 text-xl font-medium">Active</p>
         </div>
       </div>
     </div>
@@ -75,36 +77,39 @@ const featuredAlbums = albumEntries.slice(0, 3);
   <section class="grid gap-5 py-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
     <article class="panel-dark p-7 sm:p-8" data-reveal style="--delay: 280ms;">
       <p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-white">Work</p>
-      <h2 class="mt-4 max-w-xl text-3xl font-medium tracking-tight">Interfaces with fewer moving parts and stronger edges.</h2>
+      <h2 class="mt-4 max-w-xl text-3xl font-medium tracking-tight">Interfaces with fewer parts and more conviction.</h2>
       <p class="mt-4 max-w-2xl leading-8 text-white">
-        Clean structures, harder contrast, and interaction that feels deliberate rather than polite. The page should stay minimal without becoming passive.
+        Minimalism here means removing drag, not removing energy. The page stays structured, high-contrast, and easy to scan.
       </p>
     </article>
 
     <div class="grid gap-5 sm:grid-cols-2">
       <article class="panel-green p-6" data-reveal style="--delay: 360ms;">
-        <p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-black">Writing</p>
-        <h2 class="mt-4 text-2xl font-medium tracking-tight">Notes that stay short enough to reread</h2>
-        <p class="mt-4 leading-7 text-black">
-          Essays on product thinking, digital environments, and the value of restraint.
+        <p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-white">Writing</p>
+        <h2 class="mt-4 text-2xl font-medium tracking-tight text-white">Notes that stay short enough to revisit</h2>
+        <p class="mt-4 leading-7 text-white">
+          Essays on product thinking, digital environments, and the value of restraint with edge.
         </p>
       </article>
 
-      <article class="panel p-6" data-reveal style="--delay: 440ms;">
+      <article class="panel-soft p-6" data-reveal style="--delay: 440ms;">
         <p class="kicker">Listening</p>
-        <h2 class="mt-4 text-2xl font-medium tracking-tight">Albums that leave a residue</h2>
+        <h2 class="mt-4 text-2xl font-medium tracking-tight">Albums that hold shape over time</h2>
+        <p class="mt-4 leading-7 text-muted">
+          A lean collection of records, favorite tracks, and tags with no clutter around them.
+        </p>
       </article>
     </div>
   </section>
 
-  <section class="grid gap-10 border-t border-line py-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+  <section class="grid gap-10 border-t border-black py-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
     <div class="space-y-6">
       <div class="flex items-end justify-between gap-4">
         <div>
-          <p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-white">Latest Writing</p>
+          <p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-accent">Latest Writing</p>
           <h2 class="mt-3 text-3xl font-medium tracking-tight">Recent blog posts</h2>
         </div>
-        <a href="/blog/" class="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-white hover:text-accent">View all</a>
+        <a href="/blog/" class="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-black hover:text-accent">View all</a>
       </div>
 
       <div class="space-y-4">
@@ -114,7 +119,7 @@ const featuredAlbums = albumEntries.slice(0, 3);
               href={`/blog/${post.id}/`}
               class:list={[
                 "block p-6 hover:-translate-y-0.5",
-                index === 0 ? "panel-dark" : "panel hover:border-accent",
+                index === 0 ? "panel-dark" : "panel-soft hover:border-accent",
               ]}
             >
               <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
@@ -139,10 +144,10 @@ const featuredAlbums = albumEntries.slice(0, 3);
     <div class="space-y-6">
       <div class="flex items-end justify-between gap-4">
         <div>
-          <p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-white">On Repeat</p>
+          <p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-accent">On Repeat</p>
           <h2 class="mt-3 text-3xl font-medium tracking-tight">Selected albums</h2>
         </div>
-        <a href="/albums/" class="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-white hover:text-accent">View all</a>
+        <a href="/albums/" class="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-black hover:text-accent">View all</a>
       </div>
 
       <div class="space-y-4">
@@ -158,16 +163,33 @@ const featuredAlbums = albumEntries.slice(0, 3);
               <img
                 src={album.data.cover}
                 alt={`Cover art for ${album.data.title} by ${album.data.artist}`}
-                class="aspect-square w-full rounded-2xl border border-line object-cover"
+                class:list={[
+                  "aspect-square w-full rounded-2xl object-cover",
+                  index === 0 ? "border border-white" : "border border-line",
+                ]}
                 loading="lazy"
               />
               <div class="flex flex-col justify-between gap-4">
                 <div>
-                  <p class:list={["kicker", index === 0 ? "text-white" : ""]}>{album.data.artist}</p>
+                  <p class:list={[
+                    "font-mono text-[0.68rem] uppercase tracking-[0.28em]",
+                    index === 0 ? "text-white" : "text-muted",
+                  ]}>{album.data.artist}</p>
                   <h3 class="mt-3 text-2xl font-medium tracking-tight">{album.data.title}</h3>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                  {album.data.tags.map((tag) => <span class="chip">{tag}</span>)}
+                  {album.data.tags.map((tag) => (
+                    <span
+                      class:list={[
+                        "inline-flex items-center rounded-full px-3 py-1 font-mono text-[0.68rem] uppercase tracking-[0.16em]",
+                        index === 0
+                          ? "border border-white bg-white text-black"
+                          : "border border-black bg-white text-black",
+                      ]}
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
             </a>
