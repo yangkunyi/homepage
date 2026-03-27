@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { withBase } from "../../lib/paths";
 
 export async function getStaticPaths() {
   const albums = await getCollection("albums");
@@ -15,7 +16,7 @@ const { entry } = Astro.props;
 ---
 
 <BaseLayout title={`${entry.data.title} | Yang Kunyi`} description={entry.data.summary}>
-  <a href="/albums/" class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-black hover:text-accent">Back to albums</a>
+  <a href={withBase("/albums/")} class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-black hover:text-accent">Back to albums</a>
 
   <section class="mt-6 grid gap-8 border-b border-black pb-10 lg:grid-cols-[minmax(0,1.05fr)_360px] lg:items-end">
     <div class="panel p-7 sm:p-10">
@@ -30,7 +31,7 @@ const { entry } = Astro.props;
 
     <div class="panel-green overflow-hidden p-3">
       <img
-        src={entry.data.cover}
+        src={withBase(entry.data.cover)}
         alt={`Cover art for ${entry.data.title} by ${entry.data.artist}`}
         class="aspect-square w-full rounded-[1.15rem] border border-white object-cover"
       />

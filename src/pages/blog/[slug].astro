@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatDate } from "../../lib/format";
+import { withBase } from "../../lib/paths";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -17,7 +18,7 @@ const { Content } = await render(entry);
 ---
 
 <BaseLayout title={`${entry.data.title} | Yang Kunyi`} description={entry.data.description}>
-  <a href="/blog/" class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-black hover:text-accent">Back to blog</a>
+  <a href={withBase("/blog/")} class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-black hover:text-accent">Back to blog</a>
 
   <section class="mt-6 grid gap-8 border-b border-black pb-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(220px,0.85fr)]">
     <div class="panel p-7 sm:p-10">

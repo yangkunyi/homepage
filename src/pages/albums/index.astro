@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { withBase } from "../../lib/paths";
 
 const albums = (await getCollection("albums")).sort(
   (a, b) => a.data.order - b.data.order,
@@ -44,13 +45,13 @@ const [featuredAlbum, ...restAlbums] = albums;
     featuredAlbum && (
       <section class="mb-6">
         <a
-          href={`/albums/${featuredAlbum.id}/`}
+          href={withBase(`/albums/${featuredAlbum.id}/`)}
           class="panel-dark grid gap-6 p-6 sm:p-8 lg:grid-cols-[260px_minmax(0,1fr)_220px]"
           data-reveal
           style="--delay: 120ms;"
         >
           <img
-            src={featuredAlbum.data.cover}
+            src={withBase(featuredAlbum.data.cover)}
             alt={`Cover art for ${featuredAlbum.data.title} by ${featuredAlbum.data.artist}`}
             class="aspect-square w-full rounded-[1.5rem] border border-white object-cover"
             loading="lazy"
@@ -86,7 +87,7 @@ const [featuredAlbum, ...restAlbums] = albums;
     {
       restAlbums.map((album, index) => (
         <a
-          href={`/albums/${album.id}/`}
+          href={withBase(`/albums/${album.id}/`)}
           class:list={[
             "grid gap-5 p-5 sm:grid-cols-[168px_minmax(0,1fr)]",
             index % 2 === 0 ? "panel-green" : "panel-soft",
@@ -95,7 +96,7 @@ const [featuredAlbum, ...restAlbums] = albums;
           style={`--delay: ${220 + index * 100}ms;`}
         >
           <img
-            src={album.data.cover}
+            src={withBase(album.data.cover)}
             alt={`Cover art for ${album.data.title} by ${album.data.artist}`}
             class:list={[
               "aspect-square w-full rounded-[1.25rem] object-cover",

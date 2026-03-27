@@ -1,4 +1,6 @@
 ---
+import { withBase } from "../lib/paths";
+
 interface Props {
   currentPath: string;
 }
@@ -6,9 +8,9 @@ interface Props {
 const { currentPath } = Astro.props;
 
 const links = [
-  { href: "/", label: "Home" },
-  { href: "/blog/", label: "Blog" },
-  { href: "/albums/", label: "Albums" },
+  { href: withBase("/"), label: "Home" },
+  { href: withBase("/blog/"), label: "Blog" },
+  { href: withBase("/albums/"), label: "Albums" },
 ];
 ---
 
@@ -16,7 +18,7 @@ const links = [
   <div class="rounded-[2rem] border border-black bg-black px-4 py-3 sm:rounded-full sm:px-2 sm:py-2" style="box-shadow: 10px 10px 0 #1a8a47;">
     <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
       <a
-        href="/"
+        href={withBase("/")}
         class="rounded-full bg-accent px-3 py-1 text-xl font-medium tracking-tight whitespace-nowrap text-white hover:bg-white hover:text-black sm:px-4 sm:py-2 sm:text-sm"
       >
         Yang Kunyi
@@ -26,8 +28,8 @@ const links = [
         {
           links.map((link) => {
             const active =
-              link.href === "/"
-                ? currentPath === "/"
+              link.href === withBase("/")
+                ? currentPath === withBase("/")
                 : currentPath.startsWith(link.href);
 
             return (

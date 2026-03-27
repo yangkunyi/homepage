@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { formatDate } from "../lib/format";
+import { withBase } from "../lib/paths";
 
 const blogEntries = (await getCollection("blog")).sort(
   (a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime(),
@@ -109,14 +110,14 @@ const featuredAlbums = albumEntries.slice(0, 3);
           <p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-accent">Latest Writing</p>
           <h2 class="mt-3 text-3xl font-medium tracking-tight">Recent blog posts</h2>
         </div>
-        <a href="/blog/" class="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-black hover:text-accent">View all</a>
+        <a href={withBase("/blog/")} class="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-black hover:text-accent">View all</a>
       </div>
 
       <div class="space-y-4">
         {
           latestPosts.map((post, index) => (
             <a
-              href={`/blog/${post.id}/`}
+              href={withBase(`/blog/${post.id}/`)}
               class:list={[
                 "block p-6 hover:-translate-y-0.5",
                 index === 0 ? "panel-dark" : "panel-soft hover:border-accent",
@@ -147,21 +148,21 @@ const featuredAlbums = albumEntries.slice(0, 3);
           <p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-accent">On Repeat</p>
           <h2 class="mt-3 text-3xl font-medium tracking-tight">Selected albums</h2>
         </div>
-        <a href="/albums/" class="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-black hover:text-accent">View all</a>
+        <a href={withBase("/albums/")} class="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-black hover:text-accent">View all</a>
       </div>
 
       <div class="space-y-4">
         {
           featuredAlbums.map((album, index) => (
             <a
-              href={`/albums/${album.id}/`}
+              href={withBase(`/albums/${album.id}/`)}
               class:list={[
                 "grid gap-5 p-4 sm:grid-cols-[112px_minmax(0,1fr)] hover:-translate-y-0.5",
                 index === 0 ? "panel-green" : "panel hover:border-accent",
               ]}
             >
               <img
-                src={album.data.cover}
+                src={withBase(album.data.cover)}
                 alt={`Cover art for ${album.data.title} by ${album.data.artist}`}
                 class:list={[
                   "aspect-square w-full rounded-2xl object-cover",

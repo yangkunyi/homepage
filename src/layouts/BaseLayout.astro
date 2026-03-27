@@ -1,5 +1,6 @@
 ---
 import SiteHeader from "../components/SiteHeader.astro";
+import { withBase } from "../lib/paths";
 import "../styles/global.css";
 
 interface Props {
@@ -18,8 +19,8 @@ const currentPath = Astro.url.pathname;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
+    <link rel="icon" href={withBase("/favicon.ico")} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
