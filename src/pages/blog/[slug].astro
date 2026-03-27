@@ -1,0 +1,45 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatDate } from "../../lib/format";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  return posts.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={`${entry.data.title} | Yang Kunyi`} description={entry.data.description}>
+  <a href="/blog/" class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-white hover:text-accent">Back to blog</a>
+
+  <section class="mt-6 grid gap-8 border-b border-line pb-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(220px,0.7fr)]">
+    <div>
+      <p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-white">Essay</p>
+      <h1 class="mt-4 max-w-4xl text-4xl font-medium tracking-tight text-balance sm:text-5xl">{entry.data.title}</h1>
+      <p class="mt-5 max-w-3xl text-lg leading-8 text-white">{entry.data.description}</p>
+    </div>
+
+    <div class="panel panel-accent p-6">
+      <p class="kicker">Published</p>
+      <p class="mt-3 text-xl font-medium">{formatDate(entry.data.publishedAt)}</p>
+      <div class="mt-6 flex flex-wrap gap-2">
+        {entry.data.tags.map((tag) => <span class="chip">{tag}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <article class="py-12">
+    <div class="panel p-7 sm:p-10">
+      <div class="rich-text max-w-3xl">
+        <Content />
+      </div>
+    </div>
+  </article>
+</BaseLayout>

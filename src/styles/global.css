@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #000000;
+  --ink: #000000;
+  --muted: #666666;
+  --line: #d9d9d9;
+  --accent: #1a8a47;
+}
+
+@theme {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --font-sans: "Space Grotesk", "Helvetica Neue", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Space Grotesk", "Helvetica Neue", sans-serif;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: #ffffff;
+  }
+
+  a,
+  button {
+    transition:
+      color 180ms ease,
+      background-color 180ms ease,
+      border-color 180ms ease,
+      transform 180ms ease;
+  }
+}
+
+@layer components {
+  .kicker {
+    @apply font-mono text-[0.68rem] uppercase tracking-[0.28em] text-muted;
+  }
+
+  .panel {
+    @apply rounded-[1.5rem] border border-black bg-white text-black;
+    box-shadow: 10px 10px 0 #1a8a47;
+  }
+
+  .panel-accent {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .panel-accent::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0.35rem;
+    background: var(--accent);
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full px-3 py-1 font-mono text-[0.68rem] uppercase tracking-[0.16em];
+    border: 1px solid #666666;
+    color: #666666;
+  }
+
+  .panel-dark {
+    @apply rounded-[1.75rem] border border-white bg-black text-white;
+    box-shadow: 10px 10px 0 #1a8a47;
+  }
+
+  .panel-green {
+    @apply rounded-[1.75rem] border border-black bg-accent text-black;
+    box-shadow: 10px 10px 0 #666666;
+  }
+
+  .rich-text {
+    @apply text-[1.02rem] leading-8 text-ink;
+  }
+
+  .rich-text > * + * {
+    @apply mt-5;
+  }
+
+  .rich-text h2 {
+    @apply mt-10 text-2xl font-medium tracking-tight;
+  }
+
+  .rich-text h3 {
+    @apply mt-8 text-xl font-medium tracking-tight;
+  }
+
+  .rich-text p {
+    @apply text-balance text-ink;
+  }
+
+  .rich-text ul {
+    @apply space-y-3 pl-5;
+    list-style: square;
+  }
+
+  .rich-text li::marker {
+    color: var(--accent);
+  }
+
+  .rich-text a {
+    @apply underline decoration-line underline-offset-4;
+    text-decoration-color: var(--accent);
+  }
+
+  .rich-text a:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+  }
+
+  .rich-text blockquote {
+    @apply border-l-4 border-accent pl-5 text-lg italic text-ink;
+  }
+
+  .rich-text code {
+    @apply rounded-md bg-ink px-1.5 py-1 font-mono text-[0.9rem] text-white;
+  }
+
+  .rich-text hr {
+    @apply my-8 border-line;
+  }
+}
+
+[data-reveal] {
+  opacity: 0;
+  animation: rise 720ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    animation: none;
+  }
+}

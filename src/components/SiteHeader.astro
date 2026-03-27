@@ -1,0 +1,51 @@
+---
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/blog/", label: "Blog" },
+  { href: "/albums/", label: "Albums" },
+];
+---
+
+<header class="mb-12 sm:mb-16">
+  <div class="rounded-[2rem] border border-black bg-accent px-4 py-3 sm:rounded-full sm:px-2 sm:py-2" style="box-shadow: 10px 10px 0 #666666;">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+      <a
+        href="/"
+        class="rounded-full px-3 py-1 text-xl font-medium tracking-tight whitespace-nowrap text-black hover:text-white sm:px-4 sm:py-2 sm:text-sm"
+      >
+        Yang Kunyi
+      </a>
+
+      <nav class="grid grid-cols-3 gap-1 sm:flex sm:items-center">
+        {
+          links.map((link) => {
+            const active =
+              link.href === "/"
+                ? currentPath === "/"
+                : currentPath.startsWith(link.href);
+
+            return (
+              <a
+                href={link.href}
+                class:list={[
+                  "rounded-full px-3 py-2.5 text-center font-mono text-[0.78rem] uppercase tracking-[0.18em] sm:px-4 sm:py-2 sm:text-[0.7rem]",
+                  active
+                    ? "bg-black text-white"
+                    : "text-black hover:bg-white hover:text-black",
+                ]}
+              >
+                {link.label}
+              </a>
+            );
+          })
+        }
+      </nav>
+    </div>
+  </div>
+</header>

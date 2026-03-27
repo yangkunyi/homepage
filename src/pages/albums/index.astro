@@ -1,0 +1,130 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const albums = (await getCollection("albums")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const [featuredAlbum, ...restAlbums] = albums;
+---
+
+<BaseLayout title="Albums | Yang Kunyi" description="An archive of albums worth returning to.">
+  <section class="mb-12 grid gap-8 border-b border-line pb-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)]">
+    <div>
+      <p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-white">Listening</p>
+      <h1 class="mt-4 text-5xl font-medium tracking-tight sm:text-6xl">Albums</h1>
+    </div>
+    <div class="panel-green p-7 sm:p-8">
+      <p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-black">Archive</p>
+      <p class="mt-4 text-2xl font-medium leading-tight text-black">
+        A short shelf of records worth keeping nearby.
+      </p>
+      <div class="mt-8 grid gap-4 sm:grid-cols-3">
+        <div class="rounded-[1.25rem] border border-black bg-black px-4 py-4 text-white">
+          <p class="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-white">Count</p>
+          <p class="mt-3 text-2xl font-medium">{albums.length}</p>
+        </div>
+        <div class="rounded-[1.25rem] border border-black bg-white px-4 py-4 text-black">
+          <p class="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-muted">Mode</p>
+          <p class="mt-3 text-2xl font-medium">Repeat</p>
+        </div>
+        <div class="rounded-[1.25rem] border border-black bg-accent px-4 py-4 text-black" style="box-shadow: 10px 10px 0 #666666;">
+          <p class="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-black">Method</p>
+          <p class="mt-3 text-2xl font-medium">Keep</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {
+    featuredAlbum && (
+      <section class="mb-6">
+        <a
+          href={`/albums/${featuredAlbum.id}/`}
+          class="panel-dark grid gap-6 p-6 sm:p-8 lg:grid-cols-[260px_minmax(0,1fr)_220px]"
+          data-reveal
+          style="--delay: 120ms;"
+        >
+          <img
+            src={featuredAlbum.data.cover}
+            alt={`Cover art for ${featuredAlbum.data.title} by ${featuredAlbum.data.artist}`}
+            class="aspect-square w-full rounded-[1.5rem] border border-white object-cover"
+            loading="lazy"
+          />
+
+          <div class="flex flex-col justify-between gap-6">
+            <div>
+              <div class="flex flex-wrap items-center gap-3">
+                <p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-white">{featuredAlbum.data.artist}</p>
+                <span class="h-1 w-1 rounded-full bg-accent"></span>
+                <p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-white">{featuredAlbum.data.released}</p>
+              </div>
+              <h2 class="mt-5 max-w-3xl text-4xl font-medium tracking-tight sm:text-5xl">{featuredAlbum.data.title}</h2>
+            </div>
+
+            <div class="flex flex-wrap gap-2">
+              {featuredAlbum.data.tags.map((tag) => <span class="rounded-full border border-white px-3 py-1 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-white">{tag}</span>)}
+            </div>
+          </div>
+
+          <div class="rounded-[1.5rem] border border-accent bg-accent px-5 py-5 text-black">
+            <p class="font-mono text-[0.68rem] uppercase tracking-[0.22em]">Favorite Tracks</p>
+            <ul class="mt-5 space-y-3">
+              {featuredAlbum.data.favoriteTracks.map((track) => <li class="text-lg font-medium">{track}</li>)}
+            </ul>
+          </div>
+        </a>
+      </section>
+    )
+  }
+
+  <section class="grid gap-5 lg:grid-cols-2">
+    {
+      restAlbums.map((album, index) => (
+        <a
+          href={`/albums/${album.id}/`}
+          class:list={[
+            "grid gap-5 p-5 sm:grid-cols-[168px_minmax(0,1fr)]",
+            index % 2 === 0 ? "panel-green" : "panel",
+          ]}
+          data-reveal
+          style={`--delay: ${220 + index * 100}ms;`}
+        >
+          <img
+            src={album.data.cover}
+            alt={`Cover art for ${album.data.title} by ${album.data.artist}`}
+            class:list={[
+              "aspect-square w-full rounded-[1.25rem] object-cover",
+              index % 2 === 0 ? "border border-black" : "border border-line",
+            ]}
+            loading="lazy"
+          />
+
+          <div class="flex flex-col justify-between gap-5">
+            <div>
+              <div class="flex flex-wrap items-center gap-3">
+                <p class:list={["font-mono text-[0.68rem] uppercase tracking-[0.28em]", index % 2 === 0 ? "text-black" : "text-muted"]}>{album.data.artist}</p>
+                <span class="h-1 w-1 rounded-full bg-accent"></span>
+                <p class:list={["font-mono text-[0.68rem] uppercase tracking-[0.28em]", index % 2 === 0 ? "text-black" : "text-muted"]}>{album.data.released}</p>
+              </div>
+              <h2 class="mt-4 text-3xl font-medium tracking-tight">{album.data.title}</h2>
+            </div>
+
+            <div class="grid gap-4 sm:grid-cols-[minmax(0,1fr)_150px]">
+              <div class="flex flex-wrap gap-2">
+                {album.data.tags.map((tag) => <span class="chip">{tag}</span>)}
+              </div>
+              <div>
+                <p class:list={["font-mono text-[0.68rem] uppercase tracking-[0.22em]", index % 2 === 0 ? "text-black" : "text-muted"]}>Tracks</p>
+                <ul class:list={["mt-3 space-y-2 text-sm", index % 2 === 0 ? "text-black" : "text-muted"]}>
+                  {album.data.favoriteTracks.slice(0, 2).map((track) => <li>{track}</li>)}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </a>
+      ))
+    }
+  </section>
+</BaseLayout>

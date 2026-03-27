@@ -1,0 +1,86 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const albums = await getCollection("albums");
+
+  return albums.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+---
+
+<BaseLayout title={`${entry.data.title} | Yang Kunyi`} description={entry.data.summary}>
+  <a href="/albums/" class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-white hover:text-accent">Back to albums</a>
+
+  <section class="mt-6 grid gap-8 border-b border-line pb-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
+    <div>
+      <p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-white">Album</p>
+      <h1 class="mt-4 max-w-4xl text-5xl font-medium tracking-tight text-balance sm:text-6xl">{entry.data.title}</h1>
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        <span class="rounded-full border border-white px-3 py-1 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-white">{entry.data.artist}</span>
+        <span class="rounded-full border border-white px-3 py-1 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-white">{entry.data.released}</span>
+      </div>
+    </div>
+
+    <div class="panel overflow-hidden p-3">
+      <img
+        src={entry.data.cover}
+        alt={`Cover art for ${entry.data.title} by ${entry.data.artist}`}
+        class="aspect-square w-full rounded-[1.15rem] border border-line object-cover"
+      />
+    </div>
+  </section>
+
+  <section class="grid gap-8 py-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(280px,0.9fr)]">
+    <div class="panel-dark p-7 sm:p-10">
+      <div class="flex items-start justify-between gap-6 border-b border-white pb-6">
+        <div>
+          <p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-white">Favorite Tracks</p>
+          <h2 class="mt-3 text-3xl font-medium tracking-tight">Keep On Repeat</h2>
+        </div>
+        <p class="rounded-full border border-accent bg-accent px-3 py-1 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-black">
+          {entry.data.favoriteTracks.length} Tracks
+        </p>
+      </div>
+
+      <ol class="mt-8 grid gap-4">
+        {
+          entry.data.favoriteTracks.map((track, index) => (
+            <li class="flex items-center justify-between gap-4 rounded-[1.25rem] border border-white px-5 py-4">
+              <span class="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-white">{String(index + 1).padStart(2, "0")}</span>
+              <span class="flex-1 text-2xl font-medium tracking-tight">{track}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+
+    <aside class="grid gap-5">
+      <div class="panel-green p-6">
+        <p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-black">Record</p>
+        <div class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-1">
+          <div>
+            <p class="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-black">Artist</p>
+            <p class="mt-3 text-2xl font-medium tracking-tight">{entry.data.artist}</p>
+          </div>
+          <div>
+            <p class="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-black">Released</p>
+            <p class="mt-3 text-2xl font-medium tracking-tight">{entry.data.released}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel p-6">
+        <p class="kicker">Tags</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          {entry.data.tags.map((tag) => <span class="chip">{tag}</span>)}
+        </div>
+      </div>
+    </aside>
+  </section>
+</BaseLayout>
